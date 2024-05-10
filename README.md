@@ -1,1 +1,1 @@
-# Sistema-Acad-mico
+# Academic system
