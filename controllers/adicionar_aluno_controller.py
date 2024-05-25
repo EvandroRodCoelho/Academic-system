@@ -15,7 +15,7 @@ def logica_cadastro():
             nome = values['nome']
             endereco = values['endereco']
             if nome and endereco:
-                 if len(nome) > 3 or len(endereco) > 3:
+                 if len(nome) > 100 or len(endereco) > 100:
                   sg.popup('Os campos tem uma tamanho máximo de 100 caracteres')
                  else:
                     adicionar_aluno(nome, endereco)
