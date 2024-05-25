@@ -9,7 +9,7 @@ def iniciar_conn():
             id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             nome VARCHAR(100) NOT NULL DEFAULT '',
             endereco VARCHAR(100) NOT NULL DEFAULT '',
-            criado_em DATETIME DEFAULT TIMESTAMP
+            criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     """)
     
