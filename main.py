@@ -1,5 +1,5 @@
-from controllers.home_controller import HomeController
+from service.page_service import NavegacaoService
 
-if __name__ == '__main__':
-    homeController = HomeController()
-    homeController.retorno()
+if __name__ == "__main__":
+    home_controller = NavegacaoService()
+    NavegacaoService.navegar_para_home();

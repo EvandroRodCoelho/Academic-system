@@ -1,16 +1,22 @@
 from database.aluno import adicionar_aluno
-from views.aluno.adicionar_aluno import tela_adicionar_aluno
+from service.page_service import NavegacaoService
+from views.aluno.adicionar_aluno import TelaAdicionarAluno
 import PySimpleGUI as sg
-    
-def adicionar_aluno_controller():
-    window = tela_adicionar_aluno()
+class AdicionarAlunoController:
 
-    while True:
-        event, values = window.read()
+    def __init__(self):
+        self.window = None
+    def mostrar_tela(self):
+        self.window = TelaAdicionarAluno().window
+        self.retorno()
+    
+    def retorno(self):
+     while True:
+        event, values = self.window.read()
 
         if event == sg.WIN_CLOSED or event == 'Cancelar':
             break
-
+        
         if event == 'Cadastrar':
             nome = values['nome']
             endereco = values['endereco']
@@ -22,6 +28,10 @@ def adicionar_aluno_controller():
                     sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}\nEndereço: {endereco}')
             else:
                 sg.popup('Por favor, preencha todos os campos.')
-    window.close()
-
+        
+        if event == sg.WIN_CLOSED or event == 'Fechar':
+            self.window.close();
+            paginaService = NavegacaoService()
+            paginaService.navegar_para_alunos()
+            break
 

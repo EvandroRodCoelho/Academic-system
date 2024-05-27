@@ -1,8 +1,17 @@
 import PySimpleGUI as sg
 
-def tela_principal():
-    layout = [
-        [sg.Button('Cadastrar Aluno', font=("Helvetica",14)), sg.Button('Visualizar Alunos', font=("Helvetica",14))],
-        [sg.Button('Sair', font=("Helvetica",16))]
-    ]
-    return sg.Window('Sistema de Alunos', layout, finalize=True)
+class HomeView:
+    def __init__(self):
+        self.layout = [
+            [sg.Button('Alunos'), sg.Button('Professores')],
+            [sg.Button('Disciplinas'),sg.Button('Turmas')],
+            [sg.Button('Salas de Aulas'),sg.Button('Aulas'),sg.Button('Horários')],
+            [sg.Button('Sair')]
+        ]
+        self.window = sg.Window('Sistema de Gerenciamento Escolar', self.layout, finalize=True)
+
+    def mostrar(self):
+        return self.window.read()
+
+    def fechar(self):
+        self.window.close()
