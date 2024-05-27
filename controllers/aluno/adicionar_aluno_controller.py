@@ -1,8 +1,8 @@
-from database.adicionar_aluno import adicionar_aluno
-from view.adicionar_aluno import tela_adicionar_aluno
+from database.aluno import adicionar_aluno
+from views.aluno.adicionar_aluno import tela_adicionar_aluno
 import PySimpleGUI as sg
     
-def logica_cadastro():
+def adicionar_aluno_controller():
     window = tela_adicionar_aluno()
 
     while True:

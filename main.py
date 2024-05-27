@@ -1,5 +1,5 @@
 # import PySimpleGUI as sG
-from controllers.adicionar_aluno_controller import logica_cadastro
+from controllers.home_controller import home_controller
 
 # # Lógica de Prolog
 # def aluno(x):
@@ -62,4 +62,4 @@ from controllers.adicionar_aluno_controller import logica_cadastro
 # window.close()
 
 if __name__ == '__main__':
-    logica_cadastro()
+    home_controller();
