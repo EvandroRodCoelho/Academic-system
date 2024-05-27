@@ -1,6 +1,8 @@
 from pyswip import Prolog
 
+
 prolog = Prolog()
+
 
 # Definindo as regras Prolog
 prolog.assertz("aluno(X) :- estudante(X)")
