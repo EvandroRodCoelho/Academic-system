@@ -12,15 +12,18 @@ class Conexao:
         self.db.executescript(sql)
 
     def iniciar_conn(self):
-        self.conn = sqlite3.connect('sqlite_database.db')
+        self.conn = sqlite3.connect('./database/sqlite_database.db')
         self.db = self.conn.cursor()
 
     def fechar_conn(self):
         if self.db:
+            self.db.close()
+            self.db = None
+        if self.conn:
             self.conn.commit()
             self.conn.close()
             self.conn = None
-            self.db.close()
+
 
     def executar_sql(self, query, params=()):
         self.db.execute(query, params)
@@ -28,5 +31,5 @@ class Conexao:
     def fetchall(self):
         return self.db.fetchall()
 
-    def __del__(self):
-        self.fechar_conn()
+    # def __del__(self):
+    #     self.fechar_conn()

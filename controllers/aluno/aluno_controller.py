@@ -5,9 +5,11 @@ from service.page_service import NavegacaoService
 import PySimpleGUI as sg
 
 class AlunoController:
-    alunos = buscar_alunos() 
+    alunos = []
+    navegaçãoService = NavegacaoService(); 
     def __init__(self):
         self.window = None
+        self.alunos = buscar_alunos()
 
     def mostrar_tela(self):
         self.window = TelaAlunos(self.alunos).window
@@ -16,27 +18,23 @@ class AlunoController:
     def retorno(self):
         while True:
             event, values = self.window.read()
-            print(event)
-            if event == 'Visualizar':
-                self.window.close()
-                homeService = NavegacaoService()
-                homeService.navegar_para_visualizar_alunos()
-                break
             if event == 'Adicionar': 
                 self.window.close()
-                homeService = NavegacaoService()
-                homeService.navegar_para_adicionar_alunos()
+                self.navegaçãoService.navegar_para_adicionar_alunos()
                 break
-            if event == '-TABLE-': 
-                selected_row_index = values['-TABLE-'][0] if values['-TABLE-'] else None
-                if selected_row_index is not None:
-                    selected_aluno = self.alunos[selected_row_index]
-                    self.window.close()
-                    homeService = NavegacaoService()
-                    homeService.navegar_para_adicionar_alunos()
-                    sg.popup(f'Você selecionou o aluno:\n\nID: {selected_aluno[0]}\nNome: {selected_aluno[1]}\nEndereço: {selected_aluno[2]}')
+            # Caso implementar Edição 
+            # if event == '-TABLE-': 
+            #     selected_row_index = values['-TABLE-'][0] if values['-TABLE-'] else None
+            
+            #     if selected_row_index is not None:
+            #         selected_aluno = self.alunos[selected_row_index]
+            #         #    self.window.close()
+            #         # homeService = NavegacaoService()
+            #         # homeService.navegar_para_adicionar_alunos()
+            #         sg.popup(f'Você selecionou o aluno:\n\nID: {selected_aluno[0]}\nNome: {selected_aluno[1]}\nEndereço: {selected_aluno[2]}')
 
 
-            if event == sg.WIN_CLOSED or event == 'Sair':
+            if event == sg.WIN_CLOSED or event == 'voltar':
                 self.window.close()
+                self.navegaçãoService.navegar_para_home()
                 break

@@ -12,9 +12,6 @@ class AdicionarAlunoController:
     def retorno(self):
      while True:
         event, values = self.window.read()
-
-        if event == sg.WIN_CLOSED or event == 'Cancelar':
-            break
         
         if event == 'Cadastrar':
             nome = values['nome']
@@ -23,12 +20,12 @@ class AdicionarAlunoController:
                  if len(nome) > 100 or len(endereco) > 100:
                   sg.popup('Os campos tem uma tamanho máximo de 100 caracteres')
                  else:
-                    adicionar_aluno(nome, endereco)
+                    adicionar_aluno(nome)
                     sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}\nEndereço: {endereco}')
             else:
                 sg.popup('Por favor, preencha todos os campos.')
         
-        if event == sg.WIN_CLOSED or event == 'Fechar':
+        if event == sg.WIN_CLOSED or event == 'cancelar':
             self.window.close();
             paginaService = NavegacaoService()
             paginaService.navegar_para_alunos()

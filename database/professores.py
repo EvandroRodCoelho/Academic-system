@@ -1,26 +1,26 @@
 import sqlite3
 from database.conexao import Conexao
-def adicionar_aluno(nome, endereco):
+def adicionar(nome):
     # Inicializa a conexão com o banco de dados
     conexao = Conexao()
     conexao.iniciar_conn()
 
     try:
-        query = "INSERT INTO aluno (nome, endereco) VALUES (?, ?)"
-        conexao.executar_sql(query, (nome, endereco))
+        query = "INSERT INTO professor (nome) VALUES (?)"
+        conexao.executar_sql(query, (nome,))
         conexao.conn.commit()
         print("Aluno adicionado com sucesso!")
     finally:
         conexao.fechar_conn()
 
-def buscar_alunos():
+def buscar_professores():
     # Inicializa a conexão com o banco de dados
     conexao = Conexao()
     conexao.iniciar_conn()
 
     try:
         # Define a consulta SQL para buscar todos os alunos
-        query = "SELECT id, nome, endereco FROM aluno"
+        query = "SELECT id, nome FROM professor"
         
         # Executa a consulta SQL
         conexao.executar_sql(query)
@@ -38,6 +38,3 @@ def buscar_alunos():
         # Fecha a conexão com o banco de dados
         conexao.fechar_conn()
 
-# Exemplo de uso da função buscar_alunos
-alunos = buscar_alunos()
-print(alunos)

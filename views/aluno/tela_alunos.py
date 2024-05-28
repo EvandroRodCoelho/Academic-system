@@ -13,7 +13,8 @@ class TelaAlunos:
                 num_rows=min(25, len(alunos)),
                 font=('Helvetica', 14),
                 enable_events=True
-            )]]
+            )],
+            [sg.Button('Voltar', key='voltar', font=('Helvetica', 16))]]
             self.window = sg.Window('Gerenciamento de Alunos', self.layout)
 
     def mostrar(self):
