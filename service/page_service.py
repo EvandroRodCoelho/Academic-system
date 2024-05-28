@@ -1,5 +1,4 @@
 class NavegacaoService:
-
     def navegar_para_home():
         from controllers.home_controller import HomeController
         home_controller = HomeController()
@@ -18,7 +17,12 @@ class NavegacaoService:
         from controllers.aluno.adicionar_aluno_controller import AdicionarAlunoController
         adicionarAlunoController = AdicionarAlunoController()
         adicionarAlunoController.mostrar_tela()
+    def navegar_para_adicionar_professor(self):
+        from controllers.professor.adicionar_professor import AdicionarProfessorController
+        adicionarAlunoController = AdicionarProfessorController()
+        adicionarAlunoController.mostrar_tela()
 
-    def navegar_para_professores():
-        # Lógica de negócios para navegar para a tela de Professores
-        pass
+    def navegar_para_professores(self):
+        from controllers.professor.professor_controller import ProfessorController
+        professorController = ProfessorController()
+        professorController.mostrar_tela()
