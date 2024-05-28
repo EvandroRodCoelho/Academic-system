@@ -1,20 +1,24 @@
 from database.aluno import adicionar_aluno
 from service.page_service import NavegacaoService
-from views.aluno.adicionar_aluno import TelaAdicionarAluno
+from views.professor.tela_professor import TelaProfessor
 import PySimpleGUI as sg
-class AdicionarAlunoController:
+class AdicionarProfessorController:
     def __init__(self):
         self.window = None
     def mostrar_tela(self):
-        self.window = TelaAdicionarAluno().window
+        self.window = TelaProfessor().window
         self.retorno()
     
     def retorno(self):
      while True:
         event, values = self.window.read()
 
-        if event == sg.WIN_CLOSED or event == 'Cancelar':
+        if event == sg.WIN_CLOSED or event == 'Fechar':
+            self.window.close();
+            paginaService = NavegacaoService()
+            paginaService.navegar_para_alunos()
             break
+
         
         if event == 'Cadastrar':
             nome = values['nome']

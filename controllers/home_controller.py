@@ -21,8 +21,9 @@ class HomeController:
                   paginaService.navegar_para_alunos();
             
             elif event == 'Professores':
-                sg.popup('Navegar para a tela de Professores')
-                # Chamar função para navegar para a tela de Professores
+                self.window.close();
+                paginaService = NavegacaoService()
+                paginaService.navegar_para_professores()
 
             elif event == 'Disciplinas':
                 sg.popup('Navegar para a tela de Disciplinas')

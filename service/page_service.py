@@ -9,13 +9,10 @@ class NavegacaoService:
         aluno_controller = AlunoController()
         aluno_controller.mostrar_tela()
 
-    def navegar_para_visualizar_alunos(self):
-        from controllers.aluno.visualizar_alunos_controller import VisualizarAlunoController
-        visualizarAlunoController = VisualizarAlunoController()
-        visualizarAlunoController.mostrar_tela()
-    def navegar_para_adicionar_alunos(self):
+
+    def navegar_para_adicionar_alunos(self, metodo):
         from controllers.aluno.adicionar_aluno_controller import AdicionarAlunoController
-        adicionarAlunoController = AdicionarAlunoController()
+        adicionarAlunoController = AdicionarAlunoController(metodo)
         adicionarAlunoController.mostrar_tela()
     def navegar_para_adicionar_professor(self):
         from controllers.professor.adicionar_professor import AdicionarProfessorController
