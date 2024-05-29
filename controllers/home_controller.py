@@ -27,22 +27,18 @@ class HomeController:
 
             elif event == 'Disciplinas':
                 sg.popup('Navegar para a tela de Disciplinas')
-                # Chamar função para navegar para a tela de Disciplinas
 
             elif event == 'Turmas':
                 sg.popup('Navegar para a tela de Turmas')
-                # Chamar função para navegar para a tela de Turmas
+ 
 
             elif event == 'Salas de Aulas':
                 sg.popup('Navegar para a tela de Salas de Aulas')
-                # Chamar função para navegar para a tela de Salas de Aulas
 
             elif event == 'Horários':
                 sg.popup('Navegar para a tela de Horários')
-                # Chamar função para navegar para a tela de Horários
 
             elif event == 'Aulas':
                 sg.popup('Navegar para a tela de Aulas')
-                # Chamar função para navegar para a tela de Aulas
 
         self.window.close()

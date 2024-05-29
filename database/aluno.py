@@ -14,30 +14,19 @@ def adicionar_aluno(nome, endereco):
         conexao.fechar_conn()
 
 def buscar_alunos():
-    # Inicializa a conexão com o banco de dados
     conexao = Conexao()
     conexao.iniciar_conn()
-
     try:
-        # Define a consulta SQL para buscar todos os alunos
         query = "SELECT id, nome, endereco FROM aluno"
-        
-        # Executa a consulta SQL
         conexao.executar_sql(query)
         
-        # Recupera todos os alunos
         alunos = conexao.fetchall()
-        
         return alunos
-    
     except Exception as e:
         print("Erro ao buscar alunos:", e)
         return None
-    
     finally:
-        # Fecha a conexão com o banco de dados
         conexao.fechar_conn()
 
-# Exemplo de uso da função buscar_alunos
-alunos = buscar_alunos()
-print(alunos)
+
+
