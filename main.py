@@ -4,3 +4,4 @@ class main:
         home_controller = NavegacaoService()
         home_controller.navegar_para_home()  
 
+

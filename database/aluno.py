@@ -1,7 +1,6 @@
 import sqlite3
 from database.conexao import Conexao
 def adicionar_aluno(nome, endereco):
-    # Inicializa a conexão com o banco de dados
     conexao = Conexao()
     conexao.iniciar_conn()
 
@@ -28,5 +27,17 @@ def buscar_alunos():
     finally:
         conexao.fechar_conn()
 
+def editar_aluno(id, nome, endereco):
+    conexao = Conexao()
+    conexao.iniciar_conn()
 
+    try:
+        query = "UPDATE aluno SET nome =?, endereco =? WHERE id =?"
+        conexao.executar_sql(query, (nome, endereco, id))
+        conexao.conn.commit()
+        print("Aluno editado com sucesso!")
+    except Exception as e:
+        print("Erro ao editar aluno:", e)
+    finally:
+        conexao.fechar_conn()
 
