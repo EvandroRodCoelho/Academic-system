@@ -38,10 +38,3 @@ class AlunoController:
                 self.window.close()
                 self.navegaçãoService.navegar_para_home()
                 break
-
-    def editar_aluno(self):
-        tela_editar = TelaEditarAluno(self.selected_aluno)
-        retorno = tela_editar.mostrar()
-        if retorno == 'Salvar':
-            self.alunos = buscar_alunos()
-            self.mostrar_tela()

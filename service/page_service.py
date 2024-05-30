@@ -18,7 +18,10 @@ class NavegacaoService:
         from controllers.aluno.editar_aluno_controller import EditarAlunoController
         adicionarAlunoController = EditarAlunoController(aluno)
         adicionarAlunoController.mostrar_tela()
-   
+    def navegar_para_editar_professor(self, professor):
+        from controllers.professor.editar_professor_controller import EditarProfessorController
+        editarProfessorController = EditarProfessorController(professor)
+        editarProfessorController.mostrar_tela()
     def navegar_para_adicionar_professor(self):
         from controllers.professor.adicionar_professor import AdicionarProfessorController
         adicionarAlunoController = AdicionarProfessorController()

@@ -26,3 +26,16 @@ def buscar_professores():
     finally:
         conexao.fechar_conn()
 
+def editar_professor(id, nome):
+    conexao = Conexao()
+    conexao.iniciar_conn()
+    try:
+        query = "UPDATE professor SET nome =? WHERE id =?"
+        conexao.executar_sql(query, (nome, id))
+        conexao.conn.commit()
+        print("Professor editado com sucesso!")
+    except Exception as e:
+        print("Erro ao editar aluno:", e)
+    finally:
+        conexao.fechar_conn()
+

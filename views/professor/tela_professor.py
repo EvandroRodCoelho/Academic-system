@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 class TelaProfessor: 
     def __init__(self, professor:None):
-        self.layout =  [[sg.Text('Lista de Alunos', font=('Helvetica', 16)), sg.Button('Adicionar', font=('Helvetica', 16), key='Adicionar')],
+        self.layout =  [[sg.Text('Lista de Alunos', font=('Helvetica', 16)), sg.Button('Adicionar', font=('Helvetica', 16), key='Adicionar'), sg.Button('Editar', font=('Helvetica', 16), key='Editar')],
             [sg.Table(
                 values=professor,
                 key='-TABLE-',
