@@ -1,6 +1,7 @@
 from database.professores import adicionar
 from service.page_service import NavegacaoService
 from views.professor.adicionar_professor import TelaAdicionarProfessor
+
 import PySimpleGUI as sg
 class AdicionarProfessorController:
 
@@ -10,10 +11,7 @@ class AdicionarProfessorController:
     def mostrar_tela(self):
         self.window = TelaAdicionarProfessor().window
         self.retorno()
-    def add_professor(self, conexao, nome):
-        query = "INSERT INTO professor (nome) VALUES (?)"
-        conexao.executar_sql(query, (nome,))
-       
+
     def retorno(self):
      while True:
         event, values = self.window.read()

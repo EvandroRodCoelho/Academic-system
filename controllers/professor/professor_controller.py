@@ -1,5 +1,4 @@
-from database.conexao import Conexao
-from database.professores import buscar_professores
+from database.professores import buscar_professores,excluir
 from views.professor.tela_professor import TelaProfessor
 from service.page_service import NavegacaoService
 import PySimpleGUI as sg
@@ -11,6 +10,7 @@ class ProfessorController:
     def __init__(self):
         self.window = None   
         self.professores = buscar_professores();
+        self.homeService = NavegacaoService()
 
     def mostrar_tela(self):
         self.window = TelaProfessor(self.professores).window
@@ -20,13 +20,19 @@ class ProfessorController:
      while True:
         event, values = self.window.read()
         if event == sg.WIN_CLOSED or event == 'voltar':
+            self.window.close()
+            self.navegaçãoService.navegar_para_home()
             break
         if event == 'Adicionar': 
             self.window.close()
-            homeService = NavegacaoService()
-            homeService.navegar_para_adicionar_professor()
+            self.homeService.navegar_para_adicionar_professor()
             break
-            
+        if event == 'Excluir':
+                if self.selected_professor:
+                    excluir(self.selected_professor['id'])
+                    self.professores = buscar_professores();
+                    self.window['-TABLE-'].update(values=self.professores)
+                    self.selected_professor = None    
         if event == 'Editar': 
                 if self.selected_professor:
                     self.window.close()

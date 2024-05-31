@@ -25,6 +25,18 @@ def buscar_professores():
         return None
     finally:
         conexao.fechar_conn()
+def excluir(id):
+    conexao = Conexao()
+    conexao.iniciar_conn()
+    try:
+        query = "DELETE FROM professor WHERE id = ?"
+        conexao.executar_sql(query, (id,))
+        conexao.conn.commit()
+        print("Professor excluído com sucesso!")
+    except Exception as e:
+        print("Erro ao excluir aluno:", e)
+    finally:
+        conexao.fechar_conn()
 
 def editar_professor(id, nome):
     conexao = Conexao()

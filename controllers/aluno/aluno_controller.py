@@ -1,6 +1,6 @@
 from database.aluno import buscar_alunos
 from service.page_service import NavegacaoService
-from views.aluno.editar_aluno import TelaEditarAluno
+from database.aluno import excluir
 from views.aluno.tela_alunos import TelaAlunos
 import PySimpleGUI as sg
 
@@ -27,6 +27,13 @@ class AlunoController:
                 if self.selected_aluno:
                     self.window.close()
                     self.navegaçãoService.navegar_para_editar_alunos(self.selected_aluno)
+            if event == 'Excluir':
+                if self.selected_aluno:
+                    excluir(self.selected_aluno['id'])
+                    self.alunos = buscar_alunos();
+                    self.window['-TABLE-'].update(values=self.alunos)
+                    self.selected_aluno = None
+
             if event == '-TABLE-': 
                 selected_row_index = values['-TABLE-'][0] if values['-TABLE-'] else None
             

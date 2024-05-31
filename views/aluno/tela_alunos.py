@@ -2,9 +2,13 @@ import PySimpleGUI as sg
 class TelaAlunos:
     def __init__(self, alunos=None):
         if alunos is None or len(alunos) == 0:
-            alunos = [{"ID": 1, "Nome": "Nenhum aluno encontrado", "Endereço": ""}]
+            alunos = [('', "Nenhum aluno encontrado",  "")]
 
-        self.layout = [[sg.Text('Lista de Alunos', font=('Helvetica', 16)), sg.Button('Adicionar', font=('Helvetica', 16)), sg.Button('Editar', font=('Helvetica', 16))],
+        self.layout = [[sg.Text('Lista de Alunos', font=('Helvetica', 16)), 
+                        sg.Push(),
+                        sg.Button('Adicionar', font=('Helvetica', 16)), 
+                        sg.Button('Editar', font=('Helvetica', 16)), 
+                        sg.Button('Excluir', font=('Helvetica', 16))],
                        [sg.Table(
                            values=alunos,
                            key='-TABLE-',
