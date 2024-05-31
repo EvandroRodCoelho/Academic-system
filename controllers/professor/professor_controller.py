@@ -1,5 +1,5 @@
-from database.professores import buscar_professores,excluir
 from views.professor.tela_professor import TelaProfessor
+from model.professor_model import ProfessorModel
 from service.page_service import NavegacaoService
 import PySimpleGUI as sg
 
@@ -9,8 +9,9 @@ class ProfessorController:
     selected_professor = None
     def __init__(self):
         self.window = None   
-        self.professores = buscar_professores();
         self.homeService = NavegacaoService()
+        self.professoresModel = ProfessorModel()
+        self.professores = self.professoresModel.consultar_professores();
 
     def mostrar_tela(self):
         self.window = TelaProfessor(self.professores).window
@@ -29,8 +30,8 @@ class ProfessorController:
             break
         if event == 'Excluir':
                 if self.selected_professor:
-                    excluir(self.selected_professor['id'])
-                    self.professores = buscar_professores();
+                    self.professoresModel.excluir_professor(self.selected_professor['id'])
+                    self.professores = self.professoresModel.consultar_professores();
                     self.window['-TABLE-'].update(values=self.professores)
                     self.selected_professor = None    
         if event == 'Editar': 

@@ -14,7 +14,8 @@ class Conexao:
     def iniciar_conn(self):
         self.conn = sqlite3.connect('./database/sqlite_database.db')
         self.db = self.conn.cursor()
-
+    def commit(self): 
+        self.conn.commit()
     def fechar_conn(self):
         if self.db:
             self.db.close()

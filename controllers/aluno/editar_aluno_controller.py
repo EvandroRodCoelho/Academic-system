@@ -1,4 +1,4 @@
-from database.aluno import editar_aluno
+from model.aluno_model import AlunoModel
 from service.page_service import NavegacaoService
 from views.aluno.editar_aluno  import TelaEditarAluno
 import PySimpleGUI as sg
@@ -6,9 +6,9 @@ class EditarAlunoController:
 
     def __init__(self, aluno):
         self.window = None
-        self.paginaService = NavegacaoService()
-        self.aluno = aluno
         self.navegacaoService = NavegacaoService()
+        self.aluno = aluno
+        self.alunoModel = AlunoModel()
     def mostrar_tela(self):
         self.window = TelaEditarAluno(self.aluno).window
         self.retorno()
@@ -24,7 +24,7 @@ class EditarAlunoController:
                  if len(nome) > 100 or len(endereco) > 100:
                   sg.popup('Os campos tem uma tamanho máximo de 100 caracteres')
                  else:
-                    editar_aluno(self.aluno['id'],nome,endereco)
+                    self.alunoModel.atualizar_aluno(nome,endereco,self.aluno['id'])
                     self.navegacaoService.navegar_para_alunos();
 
             else:
@@ -32,6 +32,6 @@ class EditarAlunoController:
         
         if event == sg.WIN_CLOSED or event == 'cancelar':
             self.window.close();
-            self.paginaService.navegar_para_alunos()
+            self.navegacaoService.navegar_para_alunos()
             break
 

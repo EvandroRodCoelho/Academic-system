@@ -1,4 +1,4 @@
-from database.professores import adicionar
+from model.professor_model import ProfessorModel
 from service.page_service import NavegacaoService
 from views.professor.adicionar_professor import TelaAdicionarProfessor
 
@@ -7,6 +7,8 @@ class AdicionarProfessorController:
 
     def __init__(self):
         self.window = None
+        self.professorModel = ProfessorModel()
+        self.navegacaoService = NavegacaoService()
       
     def mostrar_tela(self):
         self.window = TelaAdicionarProfessor().window
@@ -18,8 +20,7 @@ class AdicionarProfessorController:
 
         if event == sg.WIN_CLOSED or event == 'cancelar':
             self.window.close();
-            paginaService = NavegacaoService()
-            paginaService.navegar_para_professores()
+            self.navegacaoService.navegar_para_professores()
             break
 
         if event == 'Cadastrar':
@@ -28,10 +29,8 @@ class AdicionarProfessorController:
                  if len(nome) > 100:
                   sg.popup('Os campos tem uma tamanho máximo de 100 caracteres')
                  else:
-                    adicionar(nome)
-                    sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}')
-                    
-                   
+                    self.professorModel.adicionar_professor(nome)
+                    sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}')            
             else:
                 sg.popup('Por favor, preencha todos os campos.')
         

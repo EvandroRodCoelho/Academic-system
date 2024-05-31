@@ -1,6 +1,5 @@
-from database.aluno import buscar_alunos
+from model.aluno_model import AlunoModel
 from service.page_service import NavegacaoService
-from database.aluno import excluir
 from views.aluno.tela_alunos import TelaAlunos
 import PySimpleGUI as sg
 
@@ -8,10 +7,11 @@ class AlunoController:
     alunos = []
     selected_aluno = None
     navegaçãoService = NavegacaoService(); 
+    
     def __init__(self):
         self.window = None
-        self.alunos = buscar_alunos()
-
+        self.alunoModel = AlunoModel();
+        self.alunos =self.alunoModel.consultar_alunos()
     def mostrar_tela(self):
         self.window = TelaAlunos(self.alunos).window
         self.retorno()
@@ -29,8 +29,8 @@ class AlunoController:
                     self.navegaçãoService.navegar_para_editar_alunos(self.selected_aluno)
             if event == 'Excluir':
                 if self.selected_aluno:
-                    excluir(self.selected_aluno['id'])
-                    self.alunos = buscar_alunos();
+                    self.alunoModel.excluir(self.selected_aluno['id'])
+                    self.alunos = self.alunoModel.consultar_alunos();
                     self.window['-TABLE-'].update(values=self.alunos)
                     self.selected_aluno = None
 

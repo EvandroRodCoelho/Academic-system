@@ -1,7 +1,6 @@
 import PySimpleGUI as sg
 class TelaProfessor: 
     def __init__(self, professor:None):
-        print(professor)
         if professor is None or len(professor) == 0:
             professor = [('',"Nenhum professor encontrado")]
         self.layout =  [[sg.Text('Lista de professores', font=('Helvetica', 16)), sg.Button('Adicionar', font=('Helvetica', 16), key='Adicionar'), sg.Button('Editar', font=('Helvetica', 16)), sg.Button('Excluir', font=('Helvetica', 16))],

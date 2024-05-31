@@ -1,10 +1,12 @@
-from database.aluno import adicionar_aluno
 from service.page_service import NavegacaoService
 from views.aluno.adicionar_aluno import TelaAdicionarAluno
+#from model.queries_prolog import prolog;
+from model.aluno_model import AlunoModel
 import PySimpleGUI as sg
 class AdicionarAlunoController:
     def __init__(self):
         self.window = None
+        self.alunoModel = AlunoModel();
     def mostrar_tela(self):
         self.window = TelaAdicionarAluno().window
         self.retorno()
@@ -20,7 +22,8 @@ class AdicionarAlunoController:
                  if len(nome) > 100 or len(endereco) > 100:
                   sg.popup('Os campos tem uma tamanho máximo de 100 caracteres')
                  else:
-                    adicionar_aluno(nome, endereco)
+                    self.alunoModel.adicionar_aluno(nome,endereco)
+                  #  prolog.assertz(f"aluno('{nome}')")
                     sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}\nEndereço: {endereco}')
             else:
                 sg.popup('Por favor, preencha todos os campos.')
