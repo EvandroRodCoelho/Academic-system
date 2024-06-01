@@ -8,8 +8,7 @@ class NavegacaoService:
         from controllers.aluno.aluno_controller import AlunoController
         aluno_controller = AlunoController()
         aluno_controller.mostrar_tela()
-
-
+    
     def navegar_para_adicionar_alunos(self):
         from controllers.aluno.adicionar_aluno_controller import AdicionarAlunoController
         adicionarAlunoController = AdicionarAlunoController()
@@ -31,3 +30,18 @@ class NavegacaoService:
         from controllers.professor.professor_controller import ProfessorController
         professorController = ProfessorController()
         professorController.mostrar_tela()
+
+
+    def navegar_para_disciplina(self):
+        from controllers.disciplina.disciplina_controller import DisciplinaController
+        disciplinaController = DisciplinaController()
+        disciplinaController.mostrar_tela()
+    def navegar_para_adicionar_disciplina(self):
+        from controllers.disciplina.adicionar_disciplina_controller import AdicionarDisciplinaController
+        adicionarDisciplinaController = AdicionarDisciplinaController()
+        adicionarDisciplinaController.mostrar_tela()
+    def navegar_para_editar_disciplina(self,disciplina): 
+        from controllers.disciplina.editar_disciplina_controller import EditarDisciplinaController
+        editarDisciplinaController = EditarDisciplinaController(disciplina)
+        editarDisciplinaController.mostrar_tela()
+    

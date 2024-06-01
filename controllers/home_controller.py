@@ -4,6 +4,7 @@ from service.page_service import NavegacaoService
 class HomeController:
     def __init__(self):
         self.window = None
+        self.paginaService = NavegacaoService()
 
     def mostrar_tela(self):
         self.window = HomeView().window
@@ -22,11 +23,11 @@ class HomeController:
             
             elif event == 'Professores':
                 self.window.close();
-                paginaService = NavegacaoService()
-                paginaService.navegar_para_professores()
+                self.paginaService.navegar_para_professores()
 
             elif event == 'Disciplinas':
-                sg.popup('Navegar para a tela de Disciplinas')
+                 self.window.close();
+                 self.paginaService.navegar_para_disciplina()
 
             elif event == 'Turmas':
                 sg.popup('Navegar para a tela de Turmas')
