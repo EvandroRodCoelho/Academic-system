@@ -14,8 +14,10 @@ class Conexao:
     def iniciar_conn(self):
         self.conn = sqlite3.connect('./database/sqlite_database.db')
         self.db = self.conn.cursor()
+
     def commit(self): 
         self.conn.commit()
+
     def fechar_conn(self):
         if self.db:
             self.db.close()
@@ -24,7 +26,6 @@ class Conexao:
             self.conn.commit()
             self.conn.close()
             self.conn = None
-
 
     def executar_sql(self, query, params=()):
         self.db.execute(query, params)
