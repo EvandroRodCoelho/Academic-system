@@ -9,7 +9,8 @@ class AlunoModel:
     def adicionar_aluno(self, nome, endereco):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("INSERT INTO aluno (nome, endereco) VALUES (?, ?)", (nome, endereco))
+            query = "INSERT INTO aluno (nome, endereco) VALUES (?, ?)"
+            self.db.executar_sql(query, (nome, endereco))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a inserção: {e.args[0]}")
         finally:
@@ -18,7 +19,8 @@ class AlunoModel:
     def atualizar_aluno(self, nome, endereco, id_aluno):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("UPDATE aluno SET nome = ?, endereco = ? WHERE id = ?", (nome, endereco, id_aluno))
+            query = "UPDATE aluno SET nome = ?, endereco = ? WHERE id = ?"
+            self.db.executar_sql(query, (nome, endereco, id_aluno))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a atualização: {e.args[0]}")
         finally:
@@ -27,13 +29,15 @@ class AlunoModel:
     def consultar_aluno_id(self, id_aluno):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("SELECT * FROM aluno WHERE id = ?", (id_aluno,))
+            query = "SELECT * FROM aluno WHERE id = ?"
+            self.db.executar_sql(query, (id_aluno,))
             return self.db.fetchall()
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a busca por id: {e.args[0]}")
         finally:
             self.db.fechar_conn()
-    def excluir(self,id):
+
+    def excluir(self, id):
         try:
             self.db.iniciar_conn()
             query = "DELETE FROM aluno WHERE id = ?"
@@ -42,10 +46,12 @@ class AlunoModel:
             print("Erro ao excluir aluno:", e)
         finally:
             self.db.fechar_conn()
+
     def consultar_alunos(self):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("SELECT * FROM aluno")
+            query = "SELECT * FROM aluno"
+            self.db.executar_sql(query)
             return self.db.fetchall()
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a busca: {e.args[0]}")
@@ -55,7 +61,8 @@ class AlunoModel:
     def remover_aluno(self, id_aluno):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("DELETE FROM aluno WHERE id = ?", (id_aluno,))
+            query = "DELETE FROM aluno WHERE id = ?"
+            self.db.executar_sql(query, (id_aluno,))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a remoção: {e.args[0]}")
         finally:

@@ -1,6 +1,7 @@
 import sqlite3
 from database.conexao import Conexao
 
+
 class ProfessorModel:
     def __init__(self):
         self.db = Conexao()
@@ -36,7 +37,8 @@ class ProfessorModel:
     def excluir_professor(self, id_professor):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("DELETE FROM professor WHERE id = ?", (id_professor,))
+            query = "DELETE FROM professor WHERE id = ?"
+            self.db.executar_sql(query, (id_professor,))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a remoção: {e.args[0]}")
         finally:
