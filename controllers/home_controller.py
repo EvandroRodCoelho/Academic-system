@@ -30,16 +30,20 @@ class HomeController:
                  self.paginaService.navegar_para_disciplina()
 
             elif event == 'Turmas':
-                sg.popup('Navegar para a tela de Turmas')
+                self.window.close()
+                self.paginaService.navegar_para_turmas()
  
 
             elif event == 'Salas de Aulas':
-                sg.popup('Navegar para a tela de Salas de Aulas')
+                self.window.close()
+                self.paginaService.navegar_para_salas_de_aula()
 
             elif event == 'Horários':
-                sg.popup('Navegar para a tela de Horários')
+               self.window.close()
+               self.paginaService.navegar_para_horarios()
 
             elif event == 'Aulas':
-                sg.popup('Navegar para a tela de Aulas')
+                self.window.close()
+                self.paginaService.navegar_para_aulas()
 
         self.window.close()
