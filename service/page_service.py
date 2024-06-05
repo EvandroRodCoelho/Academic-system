@@ -66,10 +66,10 @@ class NavegacaoService:
         salasDeAulaController = SalaDeAulaController()
         salasDeAulaController.mostrar_tela()
 
-    # def navegar_para_adicionar_sala_de_aula(self):
-    #     from controllers.sala_de_aula.adicionar_sala_de_aula_controller import AdicionarSalaDeAulaController
-    #     adicionarSalaDeAulaController = AdicionarSalaDeAulaController()
-    #     adicionarSalaDeAulaController.mostrar_tela()
+    def navegar_para_adicionar_sala_de_aula(self):
+        from controllers.sala_de_aula import AdicionarSalaDeAulaController
+        adicionarSalaDeAulaController = AdicionarSalaDeAulaController()
+        adicionarSalaDeAulaController.mostrar_tela()
 
     # def navegar_para_editar_sala_de_aula(self, sala_de_aula):
     #     from controllers.sala_de_aula.editar_sala_de_aula_controller import EditarSalaDeAulaController
@@ -82,10 +82,10 @@ class NavegacaoService:
         aulasController = AulasController()
         aulasController.mostrar_tela()
 
-    # def navegar_para_adicionar_aula(self):
-    #     from controllers.aulas.adicionar_aula_controller import AdicionarAulaController
-    #     adicionarAulaController = AdicionarAulaController()
-    #     adicionarAulaController.mostrar_tela()
+    def navegar_para_adicionar_aula(self):
+        from controllers.aulas.adicionar_aula import AdicionarAulaController
+        adicionarAulaController = AdicionarAulaController()
+        adicionarAulaController.mostrar_tela()
 
     # def navegar_para_editar_aula(self, aula):
     #     from controllers.aulas.editar_aula_controller import EditarAulaController

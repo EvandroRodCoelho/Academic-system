@@ -8,6 +8,7 @@ class TelaSalaDeAula:
              sg.Button('Adicionar', font=('Helvetica', 16), key='Adicionar'),
              sg.Button('Editar', font=('Helvetica', 16)),
              sg.Button('Excluir', font=('Helvetica', 16))],
+            [sg.Table()]
             [sg.Button('Voltar', key='voltar', font=('Helvetica', 16))]
         ]
         self.window = sg.Window('Salas de Aula', self.layout)
