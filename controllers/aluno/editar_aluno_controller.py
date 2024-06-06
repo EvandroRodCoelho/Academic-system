@@ -30,8 +30,8 @@ class EditarAlunoController:
                 endereco = values['endereco']
 
                 if nome and endereco:
-                    tamanho_nome_valido = list(self.prolog.query(f"tamanho_campo_valido({nome})"))
-                    tamanho_endereco_valido = list(self.prolog.query(f"tamanho_campo_valido({endereco})"))
+                    tamanho_nome_valido = list(self.prolog.query(f"tamanho_campo_valido('{nome}')"))
+                    tamanho_endereco_valido = list(self.prolog.query(f"tamanho_campo_valido('{endereco}')"))
 
                     if not tamanho_nome_valido or not tamanho_endereco_valido:
                         sG.popup('Os campos tem uma tamanho máximo de 100 caracteres')
