@@ -87,10 +87,10 @@ class NavegacaoService:
         adicionarAulaController = AdicionarAulaController()
         adicionarAulaController.mostrar_tela()
 
-    # def navegar_para_editar_aula(self, aula):
-    #     from controllers.aulas.editar_aula_controller import EditarAulaController
-    #     editarAulaController = EditarAulaController(aula)
-    #     editarAulaController.mostrar_tela()
+    def navegar_para_editar_aula(self, aula):
+        from controllers.aulas.editar_aula_controller import EditarAulaController
+        editarAulaController = EditarAulaController(aula)
+        editarAulaController.mostrar_tela()
 
     # # Funções de navegação para Horários
     def navegar_para_horarios(self):

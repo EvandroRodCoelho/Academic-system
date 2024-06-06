@@ -10,7 +10,7 @@ class TelaAulas:
             [sg.Table(
                 values=aulas,
                 key='-TABLE-',
-                headings=['ID', 'Nome', 'Horário', 'ID Professor', 'ID Disciplina'],
+                headings=['ID', 'Horário', 'Professor', 'Disciplina'],
                 col_widths=[10, 30, 15, 15, 15],
                 display_row_numbers=False,
                 auto_size_columns=False,

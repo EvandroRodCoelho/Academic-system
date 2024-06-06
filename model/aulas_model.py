@@ -50,7 +50,12 @@ class AulasModel:
     def consultar_aulas(self):
         try:
             self.db.iniciar_conn()
-            query = "SELECT * FROM grade_aulas"
+            query = """
+                SELECT a.id, a.horario, p.nome, d.nome  
+                FROM grade_aulas a 
+                JOIN professor p ON a.id_professor = p.id
+                JOIN disciplina d ON a.id_disciplina = d.id
+                """
             self.db.executar_sql(query)
             return self.db.fetchall()
         except sqlite3.Error as e:
