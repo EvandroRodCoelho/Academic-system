@@ -12,7 +12,7 @@ class HorariosController:
         self.window = None
         self.homeService = NavegacaoService()
         self.horariosModel = HorariosModel()
-        # self.horarios = self.horariosModel.consultar_horarios()
+        self.horarios = self.horariosModel.consultar_horarios()
 
     def mostrar_tela(self):
         self.window = TelaHorarios(self.horarios).window
