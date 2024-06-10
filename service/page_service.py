@@ -44,28 +44,15 @@ class NavegacaoService:
         from controllers.disciplina.editar_disciplina_controller import EditarDisciplinaController
         editarDisciplinaController = EditarDisciplinaController(disciplina)
         editarDisciplinaController.mostrar_tela()
-
-    def navegar_para_turmas(self):
-        from controllers.turma.turma_controller import TurmasController
-        turmasController = TurmasController()
-        turmasController.mostrar_tela()
-
-    # def navegar_para_adicionar_turma(self):
-    #     from controllers.turmas.adicionar_turma_controller import AdicionarTurmaController
-    #     adicionarTurmaController = AdicionarTurmaController()
-    #     adicionarTurmaController.mostrar_tela()
-
-    # def navegar_para_editar_turma(self, turma):
-    #     from controllers.turmas.editar_turma_controller import EditarTurmaController
-    #     editarTurmaController = EditarTurmaController(turma)
-    #     editarTurmaController.mostrar_tela()
-
     # # Funções de navegação para Sala de Aula
     def navegar_para_salas_de_aula(self):
         from controllers.sala_de_aula.sala_de_aula_controller import SalaDeAulaController
         salasDeAulaController = SalaDeAulaController()
         salasDeAulaController.mostrar_tela()
-
+    def navegar_para_salas_de_aula_alunos(self,aula):
+        from controllers.sala_de_aula.sala_de_aula_por_id_controller import SalaDeAulaPorIdController
+        salaDeAulaPorIdController = SalaDeAulaPorIdController(aula)
+        salaDeAulaPorIdController.mostrar_tela()
     def navegar_para_adicionar_sala_de_aula(self):
         from controllers.sala_de_aula import AdicionarSalaDeAulaController
         adicionarSalaDeAulaController = AdicionarSalaDeAulaController()
