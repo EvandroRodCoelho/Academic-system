@@ -29,11 +29,6 @@ class HomeController:
                  self.window.close();
                  self.paginaService.navegar_para_disciplina()
 
-            elif event == 'Turmas':
-                self.window.close()
-                self.paginaService.navegar_para_turmas()
- 
-
             elif event == 'Salas de Aulas':
                 self.window.close()
                 self.paginaService.navegar_para_salas_de_aula()
