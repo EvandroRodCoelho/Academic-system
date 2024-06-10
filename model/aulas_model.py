@@ -51,7 +51,7 @@ class AulasModel:
         try:
             self.db.iniciar_conn()
             query = """
-                SELECT a.id, a.horario, p.nome, d.nome  
+                SELECT a.id, a.horario, p.nome, d.nome , d.especialidade 
                 FROM grade_aulas a 
                 JOIN professor p ON a.id_professor = p.id
                 JOIN disciplina d ON a.id_disciplina = d.id

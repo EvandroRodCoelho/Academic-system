@@ -10,16 +10,17 @@ class HorariosModel:
             self.db.iniciar_conn()
             self.db.executar_sql('''
                     SELECT 
-                        grade_aulas.id,
+                        ga.id,
                         professor.nome AS professor,
                         disciplina.nome AS disciplina,
-                        grade_aulas.horario
+                        ga.horario
                     FROM 
-                        grade_aulas
+                        grade_aulas ga
                     JOIN 
-                        professor ON grade_aulas.id_professor = professor.id
+                        professor ON ga.id_professor = professor.id
                     JOIN 
-                        disciplina ON grade_aulas.id_disciplina = disciplina.id
+                        disciplina ON ga.id_disciplina = disciplina.id
+                    ORDER BY ga.horario
                     ''') 
             return self.db.fetchall()
         except sqlite3.Error as e:
