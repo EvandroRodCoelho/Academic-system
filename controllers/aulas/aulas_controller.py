@@ -3,9 +3,6 @@ from model.aulas_model import AulasModel
 from views.aulas.aulas_tela import TelaAulas
 import PySimpleGUI as sG
 class AulasController:
-    aulas = []
-    selected_aula = None
-
     def __init__(self):
         self.window = None
         self.navegaçãoService = NavegacaoService()

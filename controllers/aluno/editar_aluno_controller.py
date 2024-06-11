@@ -14,7 +14,6 @@ class EditarAlunoController:
         self.aluno = aluno
         self.alunoModel = AlunoModel()
         self.prolog = Prolog()
-
         self.prolog.assertz("tamanho_campo_valido(X) :- string_length(X, Length), Length =< 100")
 
     def mostrar_tela(self):

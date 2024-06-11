@@ -4,15 +4,13 @@ from service.page_service import NavegacaoService
 import PySimpleGUI as sg
 
 class DisciplinaController:
-    disciplinas = []
-    navegacaoService = NavegacaoService()
-    selected_disciplina = None
-
+   
     def __init__(self):
         self.window = None
-        self.homeService = NavegacaoService()
+        self.navegacaoService = NavegacaoService()
         self.disciplinaModel = DisciplinaModel()
         self.disciplinas = self.disciplinaModel.consultar_disciplinas()
+        self.disciplina_selecionada = None
 
     def mostrar_tela(self):
         self.window = TelaDisciplina(self.disciplinas).window
@@ -27,24 +25,24 @@ class DisciplinaController:
                 break
             if event == 'Adicionar':
                 self.window.close()
-                self.homeService.navegar_para_adicionar_disciplina()
+                self.navegacaoService.navegar_para_adicionar_disciplina()
                 break
             if event == 'Excluir':
-                if self.selected_disciplina:
-                    self.disciplinaModel.excluir_disciplina(self.selected_disciplina['id'])
+                if self.disciplina_selecionada:
+                    self.disciplinaModel.excluir_disciplina(self.disciplina_selecionada['id'])
                     self.disciplinas = self.disciplinaModel.consultar_disciplinas()
                     self.window['-TABLE-'].update(values=self.disciplinas)
-                    self.selected_disciplina = None
+                    self.disciplina_selecionada = None
             if event == 'Editar':
-                if self.selected_disciplina:
+                if self.disciplina_selecionada:
                     self.window.close()
-                    self.navegacaoService.navegar_para_editar_disciplina(self.selected_disciplina)
+                    self.navegacaoService.navegar_para_editar_disciplina(self.disciplina_selecionada)
                     break
             if event == '-TABLE-':
                 selected_row_index = values['-TABLE-'][0] if values['-TABLE-'] else None
                 if selected_row_index is not None:
                     linha_selecionada = self.disciplinas[selected_row_index]
-                    self.selected_disciplina = {
+                    self.disciplina_selecionada = {
                         'id': linha_selecionada[0],
                         'nome': linha_selecionada[1],
                         'id_professor': linha_selecionada[2],

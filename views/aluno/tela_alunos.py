@@ -3,6 +3,7 @@ import PySimpleGUI as sg
 
 class TelaAlunos:
     def __init__(self, alunos=None):
+        cabecalho=['ID', 'Nome', 'Endereço']
         if alunos is None or len(alunos) == 0:
             alunos = [('', "Nenhum aluno encontrado", "")]
 
@@ -14,7 +15,7 @@ class TelaAlunos:
                        [sg.Table(
                            values=alunos,
                            key='-TABLE-',
-                           headings=['ID', 'Nome', 'Endereço'],
+                           headings=cabecalho,
                            col_widths=[10, 30, 50],
                            display_row_numbers=False,
                            auto_size_columns=False,

@@ -1,4 +1,3 @@
-import os
 from pyswip import Prolog
 from service.page_service import NavegacaoService
 from views.aluno.adicionar_aluno import TelaAdicionarAluno

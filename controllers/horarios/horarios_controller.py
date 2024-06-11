@@ -4,15 +4,12 @@ from views.horarios.tela_horarios import TelaHorarios
 import PySimpleGUI as sG
 
 class HorariosController:
-    horarios = []
-    navegaçãoService = NavegacaoService()
-    selected_horario = None
-
     def __init__(self):
         self.window = None
-        self.homeService = NavegacaoService()
+        self.navegaçãoService = NavegacaoService()
         self.horariosModel = HorariosModel()
         self.horarios = self.horariosModel.consultar_horarios()
+        self.horario_selecionado = None
 
     def mostrar_tela(self):
         self.window = TelaHorarios(self.horarios).window

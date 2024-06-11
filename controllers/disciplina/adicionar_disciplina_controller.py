@@ -29,7 +29,7 @@ class AdicionarDisciplinaController:
 
             if event == sg.WIN_CLOSED or event == 'cancelar':
                 self.window.close()
-                self.navegacaoService.navegar_para_disciplinas()
+                self.navegacaoService.navegar_para_disciplina()
                 break
 
             if event == 'Cadastrar':
