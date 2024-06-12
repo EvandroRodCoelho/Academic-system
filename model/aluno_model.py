@@ -37,6 +37,27 @@ class AlunoModel:
         finally:
             self.db.fechar_conn()
 
+    
+    def obter_informacoes_aluno(self,id_aluno):
+        try:
+            self.db.iniciar_conn()
+            query = '''
+                SELECT a.nome, a.endereco, d.nome AS disciplina, ha.notas, ha.faltas
+                FROM aluno a
+                JOIN historico_alunos ha ON a.id = ha.id_aluno
+                JOIN disciplina d ON ha.id_disciplina = d.id
+                JOIN grade_aulas ga ON d.id = ga.id_disciplina
+                WHERE a.id = ?
+            '''
+            self.db.executar_sql(query, (id_aluno,))
+            return self.db.fetchall()
+        except sqlite3.Error as e:
+            print(f"Ocorreu um erro durante a busca: {e}")
+        finally:
+           self.db.fechar_conn()
+
+
+    
     def excluir(self, id):
         try:
             self.db.iniciar_conn()

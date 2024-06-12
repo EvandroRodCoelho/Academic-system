@@ -1,10 +1,10 @@
 import PySimpleGUI as sg
-
 class TelaAulas:
     def __init__(self, aulas):
-        cabecalho=['ID', 'Horário', 'Professor', 'Disciplina','Especialidade' ]
+        cabecalho = ['ID', 'Horário', 'Professor', 'Disciplina', 'Especialidade']
         self.layout = [
             [sg.Text('Lista de aulas', font=('Helvetica', 16)),
+             sg.Push(),
              sg.Button('Adicionar', font=('Helvetica', 16), key='Adicionar'),
              sg.Button('Editar', font=('Helvetica', 16)),
              sg.Button('Excluir', font=('Helvetica', 16))],
@@ -12,7 +12,7 @@ class TelaAulas:
                 values=aulas,
                 key='-TABLE-',
                 headings=cabecalho,
-                col_widths=[10, 20, 15, 15, 15,15],
+                col_widths=[10, 20, 15, 15, 15],
                 display_row_numbers=False,
                 auto_size_columns=False,
                 justification='left',
