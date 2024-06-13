@@ -12,11 +12,9 @@ class HomeView:
                 sg.Button('Disciplinas',font=('Helvetica', 14), size=button_size, pad=(5, 5)), 
                 sg.Button('Salas de Aulas',font=('Helvetica', 14), size=button_size, pad=(5, 5))
             ],
-            [
-                sg.Button('Aulas',font=('Helvetica', 14), size=button_size, pad=(5, 5)), 
-                sg.Button('Horários',font=('Helvetica', 14), size=button_size, pad=(5, 5))
+            [ 
+                sg.Button('Sair', font=('Helvetica', 14),size=button_size, pad=(5, 5))
             ],
-            [sg.Button('Sair', font=('Helvetica', 14),size=button_size, pad=(5, 5))],
         ]
         self.window = sg.Window('Sistema de Gerenciamento Escolar', self.layout, finalize=True)
 
