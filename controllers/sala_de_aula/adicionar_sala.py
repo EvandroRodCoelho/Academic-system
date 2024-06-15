@@ -2,7 +2,7 @@ from model.disciplina_model import DisciplinaModel
 from model.professor_model import ProfessorModel
 from service.page_service import NavegacaoService
 from model.aulas_model import AulasModel
-from views.aulas.adicionar_aula import TelaAdicionarAula
+from views.sala_de_aula.adicionar_sala_de_aula import TelaAdicionarAula
 
 import PySimpleGUI as sg
 
@@ -35,7 +35,7 @@ class AdicionarAulaController:
 
             if event == sg.WIN_CLOSED or event == 'cancelar':
                 self.window.close()
-                self.navegacaoService.navegar_para_aulas()
+                self.navegacaoService.navegar_para_salas_de_aula()
                 break
             elif event == 'Cadastrar':
                 try:

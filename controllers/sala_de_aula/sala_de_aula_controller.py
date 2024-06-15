@@ -21,6 +21,9 @@ class SalaDeAulaController:
                 self.window.close()
                 self.navegaçãoService.navegar_para_home()
                 break
+            if event == "Adicionar": 
+                    self.window.close()
+                    self.navegaçãoService.navegar_para_adicionar_sala_de_aula()
             if event == '-TABELA-AULAS-': 
                 selected_row_index = values['-TABELA-AULAS-'][0] if values['-TABELA-AULAS-'] else None
                 if selected_row_index is not None:
@@ -32,3 +35,4 @@ class SalaDeAulaController:
                                             'id_disciplina': linha_selecionada[4], }
                     self.window.close()
                     self.navegaçãoService.navegar_para_salas_de_aula_alunos(self.sala_selecionada)
+                

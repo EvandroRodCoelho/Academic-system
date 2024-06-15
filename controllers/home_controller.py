@@ -33,12 +33,4 @@ class HomeController:
                 self.window.close()
                 self.paginaService.navegar_para_salas_de_aula()
 
-            elif event == 'Horários':
-               self.window.close()
-               self.paginaService.navegar_para_horarios()
-
-            elif event == 'Aulas':
-                self.window.close()
-                self.paginaService.navegar_para_aulas()
-
         self.window.close()
