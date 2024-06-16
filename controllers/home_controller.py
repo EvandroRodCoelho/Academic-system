@@ -32,5 +32,8 @@ class HomeController:
             elif event == 'Salas de Aulas':
                 self.window.close()
                 self.paginaService.navegar_para_salas_de_aula()
+            elif event == 'Historico':
+                self.window.close()
+                self.paginaService.navegar_para_historico();
 
         self.window.close()

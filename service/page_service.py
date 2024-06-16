@@ -63,4 +63,8 @@ class NavegacaoService:
     #     editarSalaDeAulaController = EditarSalaDeAulaController(sala_de_aula)
     #     editarSalaDeAulaController.mostrar_tela()
 
+    def navegar_para_historico(self):
+        from controllers.historico.historico_controller import HistoricoController
+        historico_controller = HistoricoController()
+        historico_controller.mostrar_tela()
    

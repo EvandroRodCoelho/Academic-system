@@ -13,6 +13,7 @@ class HomeView:
                 sg.Button('Salas de Aulas',font=('Helvetica', 14), size=button_size, pad=(5, 5))
             ],
             [ 
+                sg.Button('Histórico',key='Historico',font=('Helvetica', 14), size=button_size, pad=(5, 5)),
                 sg.Button('Sair', font=('Helvetica', 14),size=button_size, pad=(5, 5))
             ],
         ]

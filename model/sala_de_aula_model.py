@@ -5,6 +5,25 @@ from database.conexao import Conexao
 class SalaDeAulaModel: 
   def __init__(self):
         self.db = Conexao()
+
+  def consultar_por_id_salas(self, id_sala):
+    try:
+        self.db.iniciar_conn()
+        query = '''
+            SELECT ga.id, p.nome AS professor, d.nome AS disciplina, ga.horario, d.id
+            FROM grade_aulas ga
+            JOIN professor p ON ga.id_professor = p.id
+            JOIN disciplina d ON ga.id_disciplina = d.id
+            WHERE ga.id = ?
+        '''
+        self.db.executar_sql(query, (id_sala,))
+        salas_do_aluno = self.db.fetchall()
+        return salas_do_aluno
+    except sqlite3.Error as e:
+        print(f"Erro ao consultar salas de aula por aluno: {e}")
+    finally:
+        self.db.fechar_conn()
+     
   def consultar_salas_aulas(self):
     try: 
       self.db.iniciar_conn()
@@ -36,7 +55,38 @@ class SalaDeAulaModel:
         print(f"Ocorreu um erro durante a busca: {e}")
     finally:
         self.db.fechar_conn()
+
+  def consultar_salas_por_aluno(self, aluno_id):
+    try:
+        self.db.iniciar_conn()
+        query = """
+            SELECT id_aula FROM salas_aulas WHERE id_aluno = ?
+        """
+        self.db.executar_sql(query, (aluno_id,))
+        salas = self.db.fetchall()
+        return [sala[0] for sala in salas]
+    except sqlite3.Error as e:
+        print(f"Ocorreu um erro durante a busca: {e}")
+    finally:
+        self.db.fechar_conn()
   
+  def consultar_alunos_por_sala(self, id_sala):
+        try:
+            self.db.iniciar_conn()
+            query = '''
+                SELECT a.id, a.nome
+                FROM aluno a
+                JOIN salas_aulas sa ON a.id = sa.id_aluno
+                WHERE sa.id = ?
+            '''
+            self.db.executar_sql(query, (id_sala,))
+            alunos_da_sala = self.db.fetchall()
+            return alunos_da_sala
+        except sqlite3.Error as e:
+            print(f"Erro ao consultar alunos por sala: {e}")
+            return []
+        finally:
+            self.db.fechar_conn()   
   def pegar_alunos(self, id_disciplina, id_aluno):
     try:
         self.db.iniciar_conn()
@@ -52,3 +102,19 @@ class SalaDeAulaModel:
     finally:
         self.db.fechar_conn()
   
+  def obter_dados_historico(self, aluno_id, id_sala):
+    try:
+        self.db.iniciar_conn()
+        query = '''
+            SELECT notas, faltas 
+            FROM historico_alunos ha
+            WHERE ha.id_aluno = ? AND ha.id_sala = ?
+        '''
+        self.db.executar_sql(query, (aluno_id, id_sala,))
+        dados_historico = self.db.fetchall()
+        return dados_historico
+    except sqlite3.Error as e:
+        print(f"Erro ao buscar dados do histórico: {e}")
+        return []
+    finally:
+        self.db.fechar_conn()
