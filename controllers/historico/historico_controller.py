@@ -2,6 +2,7 @@ from pyswip import Prolog
 import PySimpleGUI as sg
 from model.sala_de_aula_model import SalaDeAulaModel
 from model.aluno_model import AlunoModel
+from model.historico_aluno_model import HistoricoAlunoModel
 from service.page_service import NavegacaoService
 from views.historico.tela_historico import TelaHistorico
 
@@ -10,6 +11,7 @@ class HistoricoController:
         self.window = None
         self.alunosModel = AlunoModel()
         self.salaDeAulaModel = SalaDeAulaModel()
+        self.historicoModel =  HistoricoAlunoModel()
         self.navegacaoService = NavegacaoService()
         self.salas = self.salaDeAulaModel.consultar_salas_aulas()
         self.alunos = self.alunosModel.consultar_alunos()
@@ -57,7 +59,7 @@ class HistoricoController:
         if aluno_selecionado & sala_selecionada:
             id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
             id_disciplina = self.obter_id_disciplina(id_sala)
-            self.salaDeAulaModel.atribuir_falta(id_aluno, id_disciplina)
+            self.historicoModel.atribuir_falta(id_aluno, id_disciplina)
             dados_historico = self.obter_dados_historico(id_sala, id_aluno)
             historico = self.processar_historico(dados_historico, aluno_selecionado)
             self.window['tabela'].update(values=historico)
@@ -75,7 +77,7 @@ class HistoricoController:
 
     def obter_dados_historico(self, id_sala, id_aluno):
         id_disciplina = self.obter_id_disciplina(id_sala)
-        return self.salaDeAulaModel.pegar_alunos(id_disciplina, id_aluno)
+        return self.historicoModel.pegar_alunos(id_disciplina, id_aluno)
 
     def processar_historico(self, historico, aluno):
         dados_tabela = []

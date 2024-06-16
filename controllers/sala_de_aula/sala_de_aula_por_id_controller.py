@@ -1,6 +1,7 @@
 from model.sala_de_aula_model import SalaDeAulaModel
 from service.page_service import NavegacaoService
 from views.sala_de_aula.sala_de_aula_por_id import TelaSalaDeAulaPorId
+from model.historico_aluno_model import HistoricoAlunoModel
 import PySimpleGUI as sG
 
 
@@ -10,10 +11,11 @@ class SalaDeAulaPorIdController:
         self.aula = aula
         self.navegacaoService = NavegacaoService()
         self.salasDeAulaModel = SalaDeAulaModel()
+        self.historicoAlunoModel = HistoricoAlunoModel()
         self.alunos = self.salasDeAulaModel.consultar_alunos_aula(self.aula['id'])
         self.alunos_com_notas = []
         for aluno in self.alunos:
-            nota = self.salasDeAulaModel.pegar_alunos(self.aula['id_disciplina'], aluno[0])
+            nota = self.historicoAlunoModel.pegar_alunos(self.aula['id_disciplina'], aluno[0])
             self.alunos_com_notas.append({'id': aluno[0], 'nome': aluno[1], 'endereco': aluno[2],
                                           'nota': nota[0][0] if nota else 0, 'faltas': nota[0][1]})
 
