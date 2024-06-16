@@ -1,5 +1,4 @@
 from pyswip import Prolog
-import PySimpleGUI as sG
 
 prolog = Prolog()
 
