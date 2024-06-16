@@ -1,4 +1,6 @@
 import PySimpleGUI as sg
+
+
 class TelaAdicionarAluno:
     def __init__(self):
         self.layout = [

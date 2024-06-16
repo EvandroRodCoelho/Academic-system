@@ -1,9 +1,11 @@
 from model.disciplina_model import DisciplinaModel
 from model.professor_model import ProfessorModel
 from service.page_service import NavegacaoService
+from validations.validators import validar_tamanho_campo, validar_caracteres_numericos, validar_caracteres_especiais
 from views.disciplina.adicionar_disciplina import TelaAdicionarDisciplina
 
 import PySimpleGUI as sg
+
 
 class AdicionarDisciplinaController:
 
@@ -38,12 +40,23 @@ class AdicionarDisciplinaController:
                 especialidade = values['especialidade']
 
                 if nome and professor_selecionado and especialidade:
-                    if len(nome) > 100 or len(especialidade) > 100:
-                        sg.popup('Os campos têm um tamanho máximo de 100 caracteres')
+
+                    tamanho_nome_valido = validar_tamanho_campo(nome)
+                    caracteres_numericos_nome = validar_caracteres_numericos(nome)
+                    caracteres_especiais_nome = validar_caracteres_especiais(nome)
+                    tamanho_especialidade_valido = validar_tamanho_campo(especialidade)
+                    caracteres_especiais_especialidade = validar_caracteres_especiais(especialidade)
+
+                    if not tamanho_nome_valido or not tamanho_especialidade_valido:
+                        sg.popup('Os campos devem ter um tamanho mínimo de 3 caracteres e máximo de 100 caracteres')
+                    elif not caracteres_numericos_nome or not caracteres_especiais_nome:
+                        sg.popup('O campo de Nome não pode conter caracteres numéricos ou especiais (exceto espaços)')
+                    elif not caracteres_especiais_especialidade:
+                        sg.popup('O campo de Especialidade não pode conter caracteres especiais (exceto espaços)')
                     else:
                         id_professor = next(prof[0] for prof in self.professores if prof[1] == professor_selecionado)
                         self.disciplinaModel.adicionar_disciplina(nome, id_professor, especialidade)
-                        sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}', f'Professor: {professor_selecionado}', f'Especialidade: {especialidade}')
+                        sg.popup('Cadastro realizado com sucesso!', f'Nome: {nome}',
+                                 f'Professor: {professor_selecionado}', f'Especialidade: {especialidade}')
                 else:
                     sg.popup('Por favor, preencha todos os campos.')
-

@@ -3,8 +3,9 @@ from model.disciplina_model import DisciplinaModel
 from service.page_service import NavegacaoService
 import PySimpleGUI as sg
 
+
 class DisciplinaController:
-   
+
     def __init__(self):
         self.window = None
         self.navegacaoService = NavegacaoService()

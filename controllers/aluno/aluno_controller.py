@@ -5,13 +5,14 @@ import PySimpleGUI as sG
 
 
 class AlunoController:
-    
+
     def __init__(self):
         self.window = None
         self.alunoModel = AlunoModel()
         self.alunos = self.alunoModel.consultar_alunos()
         self.navegacaoService = NavegacaoService()
         self.aluno_selecionado = None
+
     def mostrar_tela(self):
         self.window = TelaAlunos(self.alunos).window
         self.retorno()
@@ -40,7 +41,7 @@ class AlunoController:
                 if selected_row_index is not None:
                     linha_selecionada = self.alunos[selected_row_index]
                     self.aluno_selecionado = {'id': linha_selecionada[0], 'nome': linha_selecionada[1],
-                                           'endereco': linha_selecionada[2]}
+                                              'endereco': linha_selecionada[2]}
 
             if event == sG.WIN_CLOSED or event == 'voltar':
                 self.window.close()

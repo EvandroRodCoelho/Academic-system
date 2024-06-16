@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 class TelaEditarProfessor:
     def __init__(self, professor):
         self.professor = professor

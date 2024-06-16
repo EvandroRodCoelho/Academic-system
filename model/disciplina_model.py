@@ -1,6 +1,7 @@
 import sqlite3
 from database.conexao import Conexao
 
+
 class DisciplinaModel:
     def __init__(self):
         self.db = Conexao()
