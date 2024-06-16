@@ -5,8 +5,6 @@ from service.page_service import NavegacaoService
 
 
 class main:
-    # Método para inserir dados no prolog,
-    # deve ser executado apenas uma vez no __main__ para evitar duplicação de dados
     @staticmethod
     def inserir_dados_prolog():
         prolog = Prolog()

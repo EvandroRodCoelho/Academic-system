@@ -114,12 +114,20 @@ class SalaDeAulaModel:
                 WHERE ha.id_aluno = ? AND ha.id_sala = ?
             '''
             self.db.executar_sql(query, (aluno_id, id_sala,))
-            dados_historico = self.db.fetchall()
-            return dados_historico
+            return self.db.fetchall()
         except sqlite3.Error as e:
             print(f"Erro ao buscar dados do histórico: {e}")
             return []
         finally:
             self.db.fechar_conn()
             return self.db.fetchall()
-
+    def atribuir_falta(self, id_aluno, disciplina_id):
+        query = "UPDATE historico_alunos SET faltas = faltas + 1 WHERE id_aluno = ? AND id_disciplina = ?"
+        try:
+            self.db.iniciar_conn()
+            self.db.executar_sql(query, (id_aluno, disciplina_id,))
+            return self.db.fetchall()
+        except Exception as e:
+            print(f"Erro ao atribuir falta: {str(e)}")  
+        finally:
+            self.db.fechar_conn()
