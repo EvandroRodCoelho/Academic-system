@@ -37,11 +37,35 @@ class HistoricoController:
                 self.buscar_historico(values)
             elif event == 'att-falta':
                 self.atribuir_falta(values)
+            elif event == 'att-nota':
+                self.atribuir_nota(values)
+            elif event == 'att-nota-falta':
+                aluno_selecionado = values.get('aluno')
+                sala_selecionada = values.get('sala')
+                if sala_selecionada and aluno_selecionado:
+                    id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
+                    self.window.close()
+                    self.navegacaoService.navegar_para_atribuir_nota_falta(id_aluno,id_sala)
 
     def fechar_janela(self):
         self.window.close()
         self.navegacaoService.navegar_para_home()
-
+    def atribuir_nota(self, values):
+        aluno_selecionado = values.get('aluno')
+        sala_selecionada = values.get('sala')
+        if aluno_selecionado and sala_selecionada:
+            id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
+            id_disciplina = self.obter_id_disciplina(id_sala)
+            nota = sg.popup_get_text("Digite a nota:", "Atribuir Nota")
+            if nota is not None and nota.isdigit():
+                self.historicoModel.atribuir_nota(id_aluno, id_disciplina,nota)
+                dados_historico = self.obter_dados_historico(id_sala, id_aluno)
+                historico = self.processar_historico(dados_historico, aluno_selecionado)
+                self.window['tabela'].update(values=historico)
+            else:
+                sg.popup("Nota inválida. Por favor, insira um número.")
+        else:
+            sg.popup("Por favor, selecione um aluno e uma sala.")
     def buscar_historico(self, values):
         aluno_selecionado = values.get('aluno')
         sala_selecionada = values.get('sala')
@@ -49,6 +73,7 @@ class HistoricoController:
             id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
             dados_historico = self.obter_dados_historico(id_sala, id_aluno)
             historico = self.processar_historico(dados_historico, aluno_selecionado)
+            print(historico)
             self.window['tabela'].update(values=historico)
         else:
             sg.popup("Por favor, selecione um aluno e uma sala.")
@@ -56,7 +81,7 @@ class HistoricoController:
     def atribuir_falta(self, values):
         aluno_selecionado = values.get('aluno')
         sala_selecionada = values.get('sala')
-        if aluno_selecionado & sala_selecionada:
+        if aluno_selecionado and sala_selecionada:
             id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
             id_disciplina = self.obter_id_disciplina(id_sala)
             self.historicoModel.atribuir_falta(id_aluno, id_disciplina)
@@ -80,8 +105,11 @@ class HistoricoController:
         return self.historicoModel.pegar_alunos(id_disciplina, id_aluno)
 
     def processar_historico(self, historico, aluno):
+        print(f"Aluno:{aluno}")
         dados_tabela = []
         aluno_id, aluno_nome = self.extrair_dados_aluno(aluno)
+
+        
         for registro in historico:
             nota, faltas = registro
             situacao = self.verificar_situacao(nota, faltas)
@@ -90,7 +118,7 @@ class HistoricoController:
 
     def extrair_dados_aluno(self, aluno):
         aluno_id = int(aluno.split()[0]) 
-        aluno_nome = aluno.split()[1]
+        aluno_nome = aluno.split()[2]
         return aluno_id, aluno_nome
 
     def verificar_situacao(self, nota, faltas):

@@ -5,6 +5,7 @@ from service.page_service import NavegacaoService
 
 
 class main:
+
     @staticmethod
     def inserir_dados_prolog():
         prolog = Prolog()

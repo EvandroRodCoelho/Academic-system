@@ -39,12 +39,56 @@ class HistoricoAlunoModel:
         try:
             self.db.iniciar_conn()
             query = '''
-                UPDATE historico_alunos
+                UPDATE historico_alunos 
                 SET faltas = faltas + 1
                 WHERE id_aluno = ? AND id_disciplina = ?
             '''
-            self.db.executar_sql(query, (id_aluno, disciplina_id))
+            self.db.executar_sql(query, (id_aluno, disciplina_id,))
+            return self.db.fetchall()
         except Exception as e:
             print(f"Erro ao atribuir falta: {str(e)}")
+        finally:
+            self.db.fechar_conn()
+
+    def atribuir_nota(self, id_aluno, disciplina_id, nota):
+        try:
+            self.db.iniciar_conn()
+            query = '''
+                UPDATE historico_alunos 
+                SET notas = ?
+                WHERE id_aluno = ? AND id_disciplina = ?
+            '''
+            self.db.executar_sql(query, (nota, id_aluno, disciplina_id,))
+          
+        except Exception as e:
+            print(f"Erro ao atribuir nota: {str(e)}")
+        finally:
+            self.db.fechar_conn()
+    
+    def atribuir_falta_especifico(self, id_aluno, id_disciplina, faltas):     
+        try:
+            self.db.iniciar_conn()
+            query = '''
+            UPDATE historico_alunos 
+            SET faltas =  ? 
+            WHERE id_aluno = ? AND id_disciplina = ?'''        
+            self.db.executar_sql(query, (faltas, id_aluno, id_disciplina))
+        except Exception as e:
+            print(f"Erro ao atribuir falta: {str(e)}")
+        finally:
+            self.db.fechar_conn()
+    def atribuir_nota_e_falta(self, id_aluno, id_disciplina, nota, faltas):
+        print(f"id_aluno:{id_aluno} id_disciplina:{id_disciplina} nota:{nota} faltas:{faltas} ")
+        try:
+            self.db.iniciar_conn()
+            query = '''
+                UPDATE historico_alunos 
+                SET notas = ?,
+                    faltas = ?
+                WHERE id_aluno = ? AND id_disciplina = ?
+            '''
+            self.db.executar_sql(query, (nota, faltas, id_aluno, id_disciplina,))
+        except Exception as e:
+            print(f"Erro ao atribuir nota e faltas: {str(e)}")
         finally:
             self.db.fechar_conn()

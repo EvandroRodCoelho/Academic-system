@@ -73,4 +73,7 @@ class NavegacaoService:
         from controllers.historico.historico_controller import HistoricoController
         historico_controller = HistoricoController()
         historico_controller.mostrar_tela()
-   
+    def navegar_para_atribuir_nota_falta(self, id_aluno, id_sala): 
+        from controllers.historico.atribuirNotaFaltaController import AtribuirNotaFaltaController
+        atribuirNotaFaltaController = AtribuirNotaFaltaController(id_aluno, id_sala)
+        atribuirNotaFaltaController.mostrar_tela()
