@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 class TelaSalaDeAulaPorId:
     def __init__(self, aula, alunos):
         cabecalhos = ['ID', 'Nome', 'Endereço', 'Notas', 'Faltas']

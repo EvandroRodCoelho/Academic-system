@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 class TelaAlunos:
     def __init__(self, alunos=None):
         cabecalho = ['ID', 'Nome', 'Endereço']

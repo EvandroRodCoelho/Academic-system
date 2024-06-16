@@ -37,8 +37,7 @@ class AlunoModel:
         finally:
             self.db.fechar_conn()
 
-    
-    def obter_informacoes_aluno(self,id_aluno):
+    def obter_informacoes_aluno(self, id_aluno):
         try:
             self.db.iniciar_conn()
             query = '''
@@ -54,10 +53,8 @@ class AlunoModel:
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a busca: {e}")
         finally:
-           self.db.fechar_conn()
+            self.db.fechar_conn()
 
-
-    
     def excluir(self, id):
         try:
             self.db.iniciar_conn()

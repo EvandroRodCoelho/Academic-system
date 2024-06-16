@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 class HomeView:
     def __init__(self):
         button_size = (14, 2)

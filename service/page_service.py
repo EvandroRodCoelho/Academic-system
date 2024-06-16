@@ -8,19 +8,22 @@ class NavegacaoService:
         from controllers.aluno.aluno_controller import AlunoController
         aluno_controller = AlunoController()
         aluno_controller.mostrar_tela()
-    
+
     def navegar_para_adicionar_alunos(self):
         from controllers.aluno.adicionar_aluno_controller import AdicionarAlunoController
         adicionarAlunoController = AdicionarAlunoController()
-        adicionarAlunoController.mostrar_tela() 
+        adicionarAlunoController.mostrar_tela()
+
     def navegar_para_editar_alunos(self, aluno):
         from controllers.aluno.editar_aluno_controller import EditarAlunoController
         adicionarAlunoController = EditarAlunoController(aluno)
         adicionarAlunoController.mostrar_tela()
+
     def navegar_para_editar_professor(self, professor):
         from controllers.professor.editar_professor_controller import EditarProfessorController
         editarProfessorController = EditarProfessorController(professor)
         editarProfessorController.mostrar_tela()
+
     def navegar_para_adicionar_professor(self):
         from controllers.professor.adicionar_professor import AdicionarProfessorController
         adicionarAlunoController = AdicionarProfessorController()
@@ -31,28 +34,31 @@ class NavegacaoService:
         professorController = ProfessorController()
         professorController.mostrar_tela()
 
-
     def navegar_para_disciplina(self):
         from controllers.disciplina.disciplina_controller import DisciplinaController
         disciplinaController = DisciplinaController()
         disciplinaController.mostrar_tela()
+
     def navegar_para_adicionar_disciplina(self):
         from controllers.disciplina.adicionar_disciplina_controller import AdicionarDisciplinaController
         adicionarDisciplinaController = AdicionarDisciplinaController()
         adicionarDisciplinaController.mostrar_tela()
-    def navegar_para_editar_disciplina(self,disciplina): 
+
+    def navegar_para_editar_disciplina(self, disciplina):
         from controllers.disciplina.editar_disciplina_controller import EditarDisciplinaController
         editarDisciplinaController = EditarDisciplinaController(disciplina)
         editarDisciplinaController.mostrar_tela()
-    # # Funções de navegação para Sala de Aula
+
     def navegar_para_salas_de_aula(self):
         from controllers.sala_de_aula.sala_de_aula_controller import SalaDeAulaController
         salasDeAulaController = SalaDeAulaController()
         salasDeAulaController.mostrar_tela()
-    def navegar_para_salas_de_aula_alunos(self,aula):
+
+    def navegar_para_salas_de_aula_alunos(self, aula):
         from controllers.sala_de_aula.sala_de_aula_por_id_controller import SalaDeAulaPorIdController
         salaDeAulaPorIdController = SalaDeAulaPorIdController(aula)
         salaDeAulaPorIdController.mostrar_tela()
+
     def navegar_para_adicionar_sala_de_aula(self):
         from controllers.sala_de_aula.adicionar_sala import AdicionarAulaController
         adicionarSalaDeAulaController = AdicionarAulaController()
@@ -62,5 +68,3 @@ class NavegacaoService:
     #     from controllers.sala_de_aula.editar_sala_de_aula_controller import EditarSalaDeAulaController
     #     editarSalaDeAulaController = EditarSalaDeAulaController(sala_de_aula)
     #     editarSalaDeAulaController.mostrar_tela()
-
-   
