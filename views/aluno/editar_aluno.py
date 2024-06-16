@@ -1,4 +1,6 @@
 import PySimpleGUI as sg
+
+
 class TelaEditarAluno:
     def __init__(self, aluno):
         self.aluno = aluno

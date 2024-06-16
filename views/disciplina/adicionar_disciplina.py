@@ -1,4 +1,6 @@
 import PySimpleGUI as sg
+
+
 class TelaAdicionarDisciplina:
     def __init__(self, professores):
         self.professores = professores
@@ -10,7 +12,8 @@ class TelaAdicionarDisciplina:
             [sg.Combo(self.professor_nomes, key='professor', readonly=True, size=(30, 1), font=("Helvetica", 14))],
             [sg.Text('Especialidade:', font=("Helvetica", 16))],
             [sg.InputText(key='especialidade', font=("Helvetica", 14))],
-            [sg.Button('Cadastrar', font=("Helvetica", 16)), sg.Button('Cancelar', font=("Helvetica", 16), key='cancelar')]
+            [sg.Button('Cadastrar', font=("Helvetica", 16)),
+             sg.Button('Cancelar', font=("Helvetica", 16), key='cancelar')]
         ]
         self.window = sg.Window('Cadastro de Disciplina', self.layout, finalize=True)
 
