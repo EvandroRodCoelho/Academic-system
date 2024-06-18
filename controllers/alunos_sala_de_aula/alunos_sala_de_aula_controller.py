@@ -12,9 +12,6 @@ class AlunosSalaDeAulaController:
         self.alunos_sala_de_aulas = self.alunosSalasDeAulaModel.consultar_alunos_sala_de_aula()
         self.aluno_sala_de_aula_selecionada = None
 
-        if self.alunos_sala_de_aulas is None:
-            self.alunos_sala_de_aulas = []
-
     def mostrar_tela(self):
         self.window = TelaAlunosSalaDeAula(self.alunos_sala_de_aulas).window
         self.retorno()

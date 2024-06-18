@@ -4,6 +4,7 @@ import PySimpleGUI as sg
 class TelaAlunosSalaDeAula:
     def __init__(self, alunos_sala_de_aulas):
         cabecalhos = ['ID', 'Aluno', 'Sala de Aula']
+
         self.layout = [
             [sg.Text('Lista de alunos adicionados as salas de aulas', font=('Helvetica', 16)),
              sg.Button('Adicionar', font=('Helvetica', 16)),
