@@ -19,21 +19,21 @@ CREATE TABLE IF NOT EXISTS disciplina (
     FOREIGN KEY(id_professor) REFERENCES professor(id)
 );
 
-CREATE TABLE IF NOT EXISTS grade_aulas (
+CREATE TABLE IF NOT EXISTS salas_aulas (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     id_professor INTEGER NOT NULL,
     id_disciplina INTEGER NOT NULL,
-    horario DATETIME,
+    data DATETIME,
     FOREIGN KEY(id_professor) REFERENCES professor(id),
     FOREIGN KEY(id_disciplina) REFERENCES disciplina(id)
 );
 
-CREATE TABLE IF NOT EXISTS salas_aulas (
+CREATE TABLE IF NOT EXISTS alunos_salas_aulas (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    id_aula INTEGER NOT NULL,
+    id_sala_aula INTEGER NOT NULL,
     id_aluno INTEGER NOT NULL,
     FOREIGN KEY(id_aluno) REFERENCES aluno(id),
-    FOREIGN KEY(id_aula) REFERENCES grade_aulas(id)
+    FOREIGN KEY(id_sala_aula) REFERENCES salas_aulas(id)
 );
 
 CREATE TABLE IF NOT EXISTS historico_alunos (
