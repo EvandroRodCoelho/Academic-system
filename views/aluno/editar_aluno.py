@@ -9,7 +9,8 @@ class TelaEditarAluno:
             [sg.InputText(default_text=aluno['nome'], key='nome', font=("Helvetica", 14))],
             [sg.Text('Endereço:', font=("Helvetica", 16))],
             [sg.InputText(default_text=aluno['endereco'], key='endereco', font=("Helvetica", 14))],
-            [sg.Button('Salvar', font=("Helvetica", 16)), sg.Button('Cancelar', font=("Helvetica", 16), key="cancelar")]
+            [sg.Button('Salvar', font=("Helvetica", 16)),
+             sg.Button('Cancelar', font=("Helvetica", 16), key="cancelar")]
         ]
         self.window = sg.Window('Editar Aluno', self.layout, finalize=True)
 

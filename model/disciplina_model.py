@@ -9,7 +9,8 @@ class DisciplinaModel:
     def adicionar_disciplina(self, nome, id_professor, especialidade):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("INSERT INTO disciplina (nome, id_professor, especialidade) VALUES (?, ?, ?)", (nome, id_professor, especialidade))
+            self.db.executar_sql("INSERT INTO disciplina (nome, id_professor, especialidade) "
+                                 "VALUES (?, ?, ?)", (nome, id_professor, especialidade))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a inserção: {e.args[0]}")
         finally:
@@ -18,7 +19,8 @@ class DisciplinaModel:
     def atualizar_disciplina(self, id_disciplina, nome, id_professor, especialidade):
         try:
             self.db.iniciar_conn()
-            self.db.executar_sql("UPDATE disciplina SET nome = ?, id_professor = ?, especialidade = ? WHERE id = ?", (nome, id_professor, especialidade, id_disciplina))
+            self.db.executar_sql("UPDATE disciplina SET nome = ?, id_professor = ?, especialidade = ? "
+                                 "WHERE id = ?", (nome, id_professor, especialidade, id_disciplina))
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a atualização: {e.args[0]}")
         finally:
