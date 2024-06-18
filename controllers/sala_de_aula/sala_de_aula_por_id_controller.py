@@ -12,7 +12,7 @@ class SalaDeAulaPorIdController:
         self.navegacaoService = NavegacaoService()
         self.salasDeAulaModel = SalaDeAulaModel()
         self.historicoAlunoModel = HistoricoAlunoModel()
-        self.alunos = self.salasDeAulaModel.consultar_alunos_aula(self.aula['id'])
+        self.alunos = self.salasDeAulaModel.consultar_sala_de_aula_id(self.aula['id'])
         self.alunos_com_notas = []
         for aluno in self.alunos:
             nota = self.historicoAlunoModel.pegar_alunos(self.aula['id_disciplina'], aluno[0])

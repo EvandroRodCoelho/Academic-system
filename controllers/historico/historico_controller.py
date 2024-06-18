@@ -14,7 +14,7 @@ class HistoricoController:
         self.salaDeAulaModel = SalaDeAulaModel()
         self.historicoModel = HistoricoAlunoModel()
         self.navegacaoService = NavegacaoService()
-        self.salas = self.salaDeAulaModel.consultar_salas_aulas()
+        self.salas = self.salaDeAulaModel.consultar_salas_de_aulas()
         self.alunos = self.alunosModel.consultar_alunos()
         self.prolog = Prolog()
         self.configurar_prolog()
@@ -101,7 +101,7 @@ class HistoricoController:
         return id_sala, id_aluno
 
     def obter_id_disciplina(self, id_sala):
-        consultar_salas_por_id = self.salaDeAulaModel.consultar_por_id_salas(id_sala)
+        consultar_salas_por_id = self.salaDeAulaModel.consultar_sala_de_aula_id(id_sala)
         return consultar_salas_por_id[0][4]
 
     def obter_dados_historico(self, id_sala, id_aluno):
