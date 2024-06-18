@@ -6,12 +6,22 @@ class SalaDeAulaModel:
     def __init__(self):
         self.db = Conexao()
 
-    def consultar_por_id_salas(self, id_sala):
+    def adicionar_sala_de_aula(self, id_professor, id_disciplina, data):
+        try:
+            self.db.iniciar_conn()
+            query = "INSERT INTO salas_aulas (id_professor, id_disciplina, data) VALUES (?, ?, ?)"
+            self.db.executar_sql(query, (id_professor, id_disciplina, data))
+        except sqlite3.Error as e:
+            print(f"Ocorreu um erro durante a inserção: {e.args[0]}")
+        finally:
+            self.db.fechar_conn()
+
+    def consultar_sala_de_aula_id(self, id_sala):
         try:
             self.db.iniciar_conn()
             query = '''
-                SELECT ga.id, p.nome AS professor, d.nome AS disciplina, ga.horario, d.id
-                FROM grade_aulas ga
+                SELECT ga.id, p.nome AS professor, d.nome AS disciplina, ga.data, d.id
+                FROM salas_aulas ga
                 JOIN professor p ON ga.id_professor = p.id
                 JOIN disciplina d ON ga.id_disciplina = d.id
                 WHERE ga.id = ?
@@ -23,69 +33,39 @@ class SalaDeAulaModel:
             print(f"Erro ao consultar salas de aula por aluno: {e}")
         finally:
             self.db.fechar_conn()
-     
-    def consultar_salas_aulas(self):
-        try: 
+
+    def consultar_salas_de_aulas(self):
+        try:
             self.db.iniciar_conn()
-           
-            query = '''
-            SELECT ga.id, p.nome AS professor,d.nome AS disciplina, ga.horario, d.id
-            FROM grade_aulas ga
+            self.db.executar_sql("""
+            SELECT ga.id, p.nome, d.nome, ga.data
+            FROM salas_aulas ga
             JOIN professor p ON ga.id_professor = p.id
             JOIN disciplina d ON ga.id_disciplina = d.id
-            '''
-            self.db.executar_sql(query)
-
+            """)
             return self.db.fetchall()
         except sqlite3.Error as e:
             print(f"Ocorreu um erro durante a busca: {e.args[0]}")
         finally:
             self.db.fechar_conn()
 
-    def consultar_alunos_aula(self, id_aula):
+    def atualizar_sala_de_aula(self, id_disciplina, id_professor, data, id_sala_de_aula):
         try:
             self.db.iniciar_conn()
-            query = '''
-            SELECT a.id, a.nome, a.endereco
-            FROM salas_aulas sa
-            JOIN aluno a ON sa.id_aluno = a.id
-            WHERE sa.id_aula = ?
-            '''
-            self.db.executar_sql(query, (id_aula,))
-            return self.db.fetchall()
+            self.db.executar_sql("UPDATE salas_aulas SET id_disciplina = ?, "
+                                 "id_professor = ?, data = ? WHERE id = ?",
+                                 (id_disciplina, id_professor, data, id_sala_de_aula))
         except sqlite3.Error as e:
-            print(f"Ocorreu um erro durante a busca: {e}")
+            print(f"Ocorreu um erro durante a atualização: {e.args[0]}")
         finally:
             self.db.fechar_conn()
 
-    def consultar_salas_por_aluno(self, aluno_id):
+    def excluir_sala_de_aula(self, id_sala_de_aula):
         try:
             self.db.iniciar_conn()
-            query = """
-                SELECT id_aula FROM salas_aulas WHERE id_aluno = ?
-            """
-            self.db.executar_sql(query, (aluno_id,))
-            salas = self.db.fetchall()
-            return [sala[0] for sala in salas]
+            query = "DELETE FROM salas_aulas WHERE id = ?"
+            self.db.executar_sql(query, (id_sala_de_aula,))
         except sqlite3.Error as e:
-            print(f"Ocorreu um erro durante a busca: {e}")
+            print(f"Ocorreu um erro durante a remoção: {e.args[0]}")
         finally:
             self.db.fechar_conn()
-  
-    def consultar_alunos_por_sala(self, id_sala):
-        try:
-            self.db.iniciar_conn()
-            query = '''
-                SELECT a.id, a.nome
-                FROM aluno a
-                JOIN salas_aulas sa ON a.id = sa.id_aluno
-                WHERE sa.id = ?
-            '''
-            self.db.executar_sql(query, (id_sala,))
-            alunos_da_sala = self.db.fetchall()
-            return alunos_da_sala
-        except sqlite3.Error as e:
-            print(f"Erro ao consultar alunos por sala: {e}")
-            return []
-        finally:
-            self.db.fechar_conn()   

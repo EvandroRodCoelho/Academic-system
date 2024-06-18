@@ -1,19 +1,18 @@
 from model.disciplina_model import DisciplinaModel
 from model.professor_model import ProfessorModel
+from model.sala_de_aula_model import SalaDeAulaModel
 from service.page_service import NavegacaoService
-from model.aulas_model import AulasModel
 from views.sala_de_aula.adicionar_sala_de_aula import TelaAdicionarAula
-
 import PySimpleGUI as sg
 
 
-class AdicionarAulaController:
+class AdicionarSalaDeAulaController:
 
     def __init__(self):
         self.window = None
         self.disciplinaModel = DisciplinaModel()
         self.professorModel = ProfessorModel()
-        self.aulasModel = AulasModel()
+        self.salaDeAulaModel = SalaDeAulaModel()
         self.navegacaoService = NavegacaoService()
         self.professores = self.obter_professores()
         self.disciplina = self.obter_disciplina()
@@ -42,12 +41,12 @@ class AdicionarAulaController:
                 try:
                     professor = values['professor']
                     disciplina = values['disciplina']
-                    horario = values['horario']
+                    data = values['data']
 
                     id_disciplina = next(dis[0] for dis in self.disciplina if dis[1] == disciplina)
                     id_professor = next(prof[0] for prof in self.professores if prof[1] == professor)
 
-                    self.aulasModel.adicionar_aula(id_professor, id_disciplina, horario)
+                    self.salaDeAulaModel.adicionar_sala_de_aula(id_professor, id_disciplina, data)
                     sg.popup('Aula cadastrada com sucesso!', title='Sucesso')
                 except Exception as e:
                     sg.popup_error(f"Erro ao cadastrar aula: {e}", title='Erro')
