@@ -24,19 +24,23 @@ class AtribuirNotaFaltaController:
                 self.navegacaoService.navegar_para_historico()
                 break
             elif event == 'confirmar':
-                print(self.id_aluno)
-                nota = values['nota']
+                notas = values['nota']
                 faltas = values['faltas']
-                print(nota, faltas)
-                if nota.isdigit() and faltas.isdigit():
-
-                    nota = int(nota)
+                if notas.isdigit() and faltas.isdigit():
+                    notas = int(notas)
                     faltas = int(faltas)
-                    self.atribuir_nota_e_falta(nota, faltas)
-                    sg.popup("Nota e faltas atribuídas com sucesso!")
 
+                    if self.historicoAlunoModel.pegar_alunos(self.id_disciplina, self.id_aluno):
+                        self.atribuir_nota_e_falta(notas, faltas)
+                        sg.popup("Nota e faltas atribuídas com sucesso!")
+                    else:
+                        self.adicionar_historico(notas, faltas)
+                        sg.popup("Nota e faltas atribuídas com sucesso!")
                 else:
                     sg.popup_error("Por favor, digite números válidos para nota e faltas.")
 
-    def atribuir_nota_e_falta(self, nota, faltas):
-        self.historicoAlunoModel.atribuir_nota_e_falta(self.id_aluno, self.id_disciplina, nota, faltas)
+    def atribuir_nota_e_falta(self, notas, faltas):
+        self.historicoAlunoModel.atribuir_nota_e_falta(self.id_aluno, self.id_disciplina, notas, faltas)
+
+    def adicionar_historico(self, notas, faltas):
+        self.historicoAlunoModel.adicionar_historico_alunos(self.id_aluno, self.id_disciplina, notas, faltas)
