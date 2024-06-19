@@ -17,7 +17,7 @@ class TelaHistorico:
             [sg.Button('Atribuir Falta', key='att-falta', size=(15, 1)),
              sg.Button('Atribuir Nota', key='att-nota', size=(15, 1)),
              sg.Button('Atribuir Nota e Falta', key='att-nota-falta', size=(20, 1))],
-            [sg.Button('Voltar', size=(10, 1))]
+            [sg.Button('Voltar', key='voltar', size=(10, 1))]
         ]
 
         self.window = sg.Window('Histórico', self.layout)

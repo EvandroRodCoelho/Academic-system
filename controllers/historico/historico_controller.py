@@ -62,6 +62,9 @@ class HistoricoController:
             if nota is not None and nota.isdigit():
                 self.historicoModel.atribuir_nota(id_aluno, id_disciplina, nota)
                 dados_historico = self.obter_dados_historico(id_sala, id_aluno)
+                if dados_historico is None:
+                    sg.popup("O aluno não pertence a esta sala")
+                    return
                 historico = self.processar_historico(dados_historico, aluno_selecionado)
                 self.window['tabela'].update(values=historico)
             else:
@@ -75,6 +78,9 @@ class HistoricoController:
         if aluno_selecionado and sala_selecionada:
             id_sala, id_aluno = self.obter_ids(sala_selecionada, aluno_selecionado)
             dados_historico = self.obter_dados_historico(id_sala, id_aluno)
+            if not dados_historico:
+                sg.popup("Aluno não está nesta aula")
+                return
             historico = self.processar_historico(dados_historico, aluno_selecionado)
             print(historico)
             self.window['tabela'].update(values=historico)
@@ -102,10 +108,14 @@ class HistoricoController:
 
     def obter_id_disciplina(self, id_sala):
         consultar_salas_por_id = self.salaDeAulaModel.consultar_sala_de_aula_id(id_sala)
+        if len(consultar_salas_por_id) == 0:
+            return None
         return consultar_salas_por_id[0][4]
 
     def obter_dados_historico(self, id_sala, id_aluno):
         id_disciplina = self.obter_id_disciplina(id_sala)
+        if not id_disciplina:
+            return []
         return self.historicoModel.pegar_alunos(id_disciplina, id_aluno)
 
     def processar_historico(self, historico, aluno):
