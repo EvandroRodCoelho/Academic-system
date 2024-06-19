@@ -114,9 +114,9 @@ class HistoricoController:
 
     def obter_dados_historico(self, id_sala, id_aluno):
         id_disciplina = self.obter_id_disciplina(id_sala)
-        if not id_disciplina:
-            return []
-        return self.historicoModel.pegar_alunos(id_disciplina, id_aluno)
+        if id_disciplina:
+            return self.historicoModel.pegar_alunos(id_disciplina, id_aluno)
+        return []
 
     def processar_historico(self, historico, aluno):
         print(f"Aluno:{aluno}")
