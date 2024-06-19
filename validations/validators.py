@@ -54,3 +54,11 @@ def validar_caracteres_alfabeticos(campo):
         return False
 
     return True
+def validar_nota(nota):
+    if int(nota) < 0 or int(nota) > 10:
+        return False
+    return True
+def validar_falta(falta):
+    if int(falta) < 0 or int(falta) > 45:
+         return False
+    return True

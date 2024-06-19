@@ -5,7 +5,7 @@ from model.aluno_model import AlunoModel
 from model.historico_aluno_model import HistoricoAlunoModel
 from service.page_service import NavegacaoService
 from views.historico.tela_historico import TelaHistorico
-
+from validations.validators import validar_nota
 
 class HistoricoController:
     def __init__(self):
@@ -60,13 +60,16 @@ class HistoricoController:
             id_disciplina = self.obter_id_disciplina(id_sala)
             nota = sg.popup_get_text("Digite a nota:", "Atribuir Nota")
             if nota is not None and nota.isdigit():
-                self.historicoModel.atribuir_nota(id_aluno, id_disciplina, nota)
-                dados_historico = self.obter_dados_historico(id_sala, id_aluno)
-                if dados_historico is None:
-                    sg.popup("O aluno não pertence a esta sala")
-                    return
-                historico = self.processar_historico(dados_historico, aluno_selecionado)
-                self.window['tabela'].update(values=historico)
+                if validar_nota(nota):
+                    self.historicoModel.atribuir_nota(id_aluno, id_disciplina, nota)
+                    dados_historico = self.obter_dados_historico(id_sala, id_aluno)
+                    if dados_historico is None:
+                        sg.popup("O aluno não pertence a esta sala")
+                        return
+                    historico = self.processar_historico(dados_historico, aluno_selecionado)
+                    self.window['tabela'].update(values=historico)
+                else:
+                    sg.popup("Nota inválida. (0 - 10)")
             else:
                 sg.popup("Nota inválida. Por favor, insira um número.")
         else:
@@ -82,7 +85,6 @@ class HistoricoController:
                 sg.popup("Aluno não está nesta aula")
                 return
             historico = self.processar_historico(dados_historico, aluno_selecionado)
-            print(historico)
             self.window['tabela'].update(values=historico)
         else:
             sg.popup("Por favor, selecione um aluno e uma sala.")
