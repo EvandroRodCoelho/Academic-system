@@ -9,7 +9,7 @@ class TelaAdicionarProfessor:
             [sg.Button('Cadastrar', font=("Helvetica", 16)),
              sg.Button('Cancelar', font=("Helvetica", 16), key='cancelar')]
         ]
-        self.window = sg.Window('Cadastro de adicionar', self.layout, finalize=True)
+        self.window = sg.Window('Cadastro de professor', self.layout, finalize=True)
 
     def mostrar(self):
         return self.window.read()

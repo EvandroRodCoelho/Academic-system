@@ -16,7 +16,7 @@ class TelaEditarDisciplina:
             [sg.InputText(key='especialidade', default_text=self.disciplina['especialidade'], font=("Helvetica", 14))],
             [sg.Button('Salvar', font=("Helvetica", 16)), sg.Button('Cancelar', font=("Helvetica", 16), key='cancelar')]
         ]
-        self.window = sg.Window('Cadastro de Disciplina', self.layout, finalize=True)
+        self.window = sg.Window('Editar de Disciplina', self.layout, finalize=True)
 
     def mostrar(self):
         return self.window.read()

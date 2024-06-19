@@ -9,7 +9,7 @@ class TelaEditarProfessor:
             [sg.InputText(default_text=professor['nome'], key='nome', font=("Helvetica", 14))],
             [sg.Button('Salvar', font=("Helvetica", 16)), sg.Button('Cancelar', font=("Helvetica", 16), key="cancelar")]
         ]
-        self.window = sg.Window('Editar Aluno', self.layout, finalize=True)
+        self.window = sg.Window('Editar Professor', self.layout, finalize=True)
     
     def mostrar(self):
         return self.window.read()
